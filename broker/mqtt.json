@@ -1,0 +1,6 @@
+{
+  "id": "",
+  "sender": "homeAutomation",
+  "receiver": "garageDoor",
+  "data": "openDoor"
+}
