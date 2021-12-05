@@ -18,8 +18,13 @@ public class DoorStatus extends Observable {
         return DoorStatus.InnerInstanceClass.instance;
     }
 
-    public void setObstacle(boolean obstacle) {
-        this.obstacle = obstacle;
+    public void setObstacle() {
+        this.obstacle = true;
+        obstacleStatusChanged();
+    }
+
+    public void clearObstacle() {
+        this.obstacle = false;
         obstacleStatusChanged();
     }
 

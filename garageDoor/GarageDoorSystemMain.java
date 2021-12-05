@@ -8,7 +8,10 @@ public class GarageDoorSystemMain {
     public static void main(String[] args) {
         Scheduler scheduler = new Scheduler();
         ActuatorInterface actuatorDriver = new ActuatorDriver();
+
         DoorController doorController = new DoorController(scheduler, actuatorDriver);
+        ObstacleController obstacleController = new ObstacleController(scheduler);
+
         Communication communication = new Communication(doorController);
         communication.connectServer();
     }
