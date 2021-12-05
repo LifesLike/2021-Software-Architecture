@@ -11,6 +11,7 @@ public class DoorOpenCommand extends DoorCommand {
 
     @Override
     public void start() {
+        actuatorDriver.up();
     }
 
 }
