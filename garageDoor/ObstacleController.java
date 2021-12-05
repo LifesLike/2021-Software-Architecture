@@ -4,7 +4,7 @@ package FinalProject.garageDoor;
 import FinalProject.garageDoor.command.ObstacleClearedCommand;
 import FinalProject.garageDoor.command.ObstacleCommand;
 import FinalProject.garageDoor.command.ObstacleDetectedCommand;
-import FinalProject.garageDoor.sensor.Scheduler;
+import FinalProject.garageDoor.scheduler.Scheduler;
 
 public class ObstacleController {
     private Scheduler scheduler;

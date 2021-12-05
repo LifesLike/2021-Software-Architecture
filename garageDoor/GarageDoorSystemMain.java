@@ -2,7 +2,7 @@ package FinalProject.garageDoor;
 
 import FinalProject.garageDoor.actuator.ActuatorDriver;
 import FinalProject.garageDoor.actuator.ActuatorInterface;
-import FinalProject.garageDoor.sensor.Scheduler;
+import FinalProject.garageDoor.scheduler.Scheduler;
 
 public class GarageDoorSystemMain {
     public static void main(String[] args) {

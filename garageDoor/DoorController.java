@@ -3,7 +3,7 @@ package FinalProject.garageDoor;
 import FinalProject.garageDoor.actuator.ActuatorInterface;
 import FinalProject.garageDoor.command.DoorCommand;
 import FinalProject.garageDoor.command.DoorOpenCommand;
-import FinalProject.garageDoor.sensor.Scheduler;
+import FinalProject.garageDoor.scheduler.Scheduler;
 
 import java.util.Observable;
 import java.util.Observer;

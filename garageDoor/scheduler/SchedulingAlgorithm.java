@@ -1,4 +1,4 @@
-package FinalProject.garageDoor.sensor;
+package FinalProject.garageDoor.scheduler;
 
 import FinalProject.garageDoor.command.Command;
 
