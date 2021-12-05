@@ -3,6 +3,8 @@ package FinalProject.garageDoor;
 import FinalProject.garageDoor.actuator.ActuatorDriver;
 import FinalProject.garageDoor.actuator.ActuatorInterface;
 import FinalProject.garageDoor.scheduler.Scheduler;
+import FinalProject.garageDoor.sensor.ObstacleSensorDriver;
+import FinalProject.garageDoor.sensor.ObstacleSensorDriverInterface;
 
 public class GarageDoorSystemMain {
     public static void main(String[] args) {
@@ -11,6 +13,7 @@ public class GarageDoorSystemMain {
 
         DoorController doorController = new DoorController(scheduler, actuatorDriver);
         ObstacleController obstacleController = new ObstacleController(scheduler);
+        ObstacleSensorDriverInterface obstacleSensor = new ObstacleSensorDriver(obstacleController);
 
         Communication communication = new Communication(doorController);
         communication.connectServer();
