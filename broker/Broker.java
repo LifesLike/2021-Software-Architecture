@@ -17,6 +17,13 @@ public class Broker {
     private List<IotThread> iotThreads = new ArrayList<>();
     private Map<String, List<IotThread>> subscribers = new ConcurrentHashMap<>();
 
+    public Broker() {
+    }
+
+    public Broker(int PORT) {
+        this.PORT = PORT;
+    }
+
     public void start() {
         try {
             serverSocket = new ServerSocket(PORT);
