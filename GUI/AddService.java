@@ -16,66 +16,49 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class AddService extends JFrame {
-	Container frame = this.getContentPane(); // 메인 컨테이너 객체
+public class AddService extends JPanel {
+
 	Color color = new Color(204, 255, 153, 200);
 	ImageIcon imgicon = new ImageIcon("img/UI_Mark.jpg");
 	Image img = imgicon.getImage();
-	JButton home = new JButton("Home");
-	JPanel panel = new JPanel();
+	private GUIFrame GF;
 
-	public AddService(String title) {
-		super(title);
+	public void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
 
-		this.setSize(300, 300);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		//this.setLayout(null);
-		init();
-		this.setVisible(true);
+		g.drawImage(img, 80, 100, 130, 120, null);
 
 	}
 
-	public void init() {
-		add(new addservicePanel());
-	}
+	public AddService(GUIFrame GF) {
+		this.GF = GF;
 
-	class addservicePanel extends JPanel {
-		public void paintComponent(Graphics g) {
-			// TODO Auto-generated method stub
-			super.paintComponent(g);
-
-			g.drawImage(img, 80, 100, 130, 120, null);
-
-		}
-
+		setLayout(new FlowLayout());
+		setBackground(color);
+		add(new JLabel("연결 코드 "));
+		JTextField tf = new JTextField(20);
 		JButton home = new JButton("Home");
+		add(tf);
+		add(home);
 
-		public addservicePanel() {
-			setLayout(new FlowLayout());
-			setBackground(color);
-			add(new JLabel("연결 코드 "));
-			JTextField tf = new JTextField(20);
-			add(tf);
-			add(home);
+		// 텍스트필드에 연결코드를 쳤을시,
+		tf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String protocol = tf.getText();
+				System.out.println(protocol);
+				tf.setText("");
 
-			// 텍스트필드에 연결코드를 쳤을시,
-			tf.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					String protocol = tf.getText();
-					System.out.println(protocol);
-					tf.setText("");
-
-				}
-			});
-			home.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					setVisible(false);
-					new Home("7조 SA Project");
-				}
-			});
-
-		}
+			}
+		});
+		home.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// setVisible(false);
+				GF.change("home");
+			}
+		});
 
 	}
+
 }
+
