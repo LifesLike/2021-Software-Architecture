@@ -13,3 +13,6 @@
 
 # Test Files #
 test*
+
+# json protocol definition #
+mqtt.json
