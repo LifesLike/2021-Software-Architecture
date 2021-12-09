@@ -14,72 +14,56 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class GarageDoor extends JFrame {
-	Container frame = this.getContentPane(); // 메인 컨테이너 객체
-	CardLayout card = new CardLayout();
+public class GarageDoor extends JPanel {
 	Color color = new Color(204, 255, 153, 200);
 	ImageIcon imgicon = new ImageIcon("img/UI_Mark.jpg");
 	Image img = imgicon.getImage();
-	JButton home = new JButton("Home");
-	JPanel panel = new JPanel();
-	
-	public GarageDoor(String title)
-	{super(title);
+	private GUIFrame GF;
 
-	this.setSize(300, 300);
-	this.setLocationRelativeTo(null);
-	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	//this.setLayout(null);
-	init();
-	this.setVisible(true);}
-	
-	public void init()
-	{frame.add(new garagedoorPanel());}
-	class garagedoorPanel extends JPanel {
+	public void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+
+		g.drawImage(img, 80, 100, 130, 120, null);
+
+	}
+
+	public GarageDoor(GUIFrame GF) {
+		this.GF = GF;
+		setSize(300, 300);
 		JButton open = new JButton("Door Open");
 		JButton close = new JButton("Door Close");
 		JButton stop = new JButton("Door Stop");
 		JButton home = new JButton("Home");
-		public void paintComponent(Graphics g) {
-			// TODO Auto-generated method stub
-			super.paintComponent(g);
+		setLayout(new FlowLayout());
+		setBackground(color);
+		add(open);
+		add(close);
+		add(stop);
+		add(home);
+		open.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("문이 열립니다.");
+			}
+		});
+		close.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("문이 닫힙니다.");
+			}
+		});
+		stop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("문이 멈췄습니다.");
+			}
+		});
+		home.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-			g.drawImage(img, 80, 100, 130, 120, null);
+				GF.change("home");
 
-		}
-
-		public garagedoorPanel() {
-			setLayout(new FlowLayout());
-			setBackground(color);
-			add(open);
-			add(close);
-			add(stop);
-			add(home);
-			
-			open.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-                      System.out.println("문이 열립니다.");
-				}
-			});
-			close.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("문이 닫힙니다.");
-				}
-			});
-			stop.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("문이 멈췄습니다.");
-				}
-			});
-			home.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					setVisible(false);
-					new Home("7조 SA Project");
-					
-				}
-			});
-
-		}
+			}
+		});
 
 	}
+
 }
