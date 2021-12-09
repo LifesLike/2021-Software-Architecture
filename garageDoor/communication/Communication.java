@@ -1,6 +1,6 @@
-package FinalProject.garageDoor;
+package FinalProject.garageDoor.communication;
 
-import FinalProject.broker.JsonMessage;
+import FinalProject.garageDoor.DoorController;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -11,7 +11,7 @@ public class Communication implements Runnable {
     private Socket socket;
     private int PORT;
     private BufferedReader in = null;
-    private BufferedWriter out = null;
+    private PrintWriter out = null;
     private DoorController doorController;
     Gson gson = new Gson();
     JsonMessage message;
@@ -30,7 +30,12 @@ public class Communication implements Runnable {
         try {
             socket = new Socket(ip, PORT);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
+            JsonMessage message = new JsonMessage();
+            message.setId("garageDoor");
+            message.setData("register");
+            out.println(gson.toJson(message));
+
             thread = new Thread(this);
             thread.start();
 
@@ -54,9 +59,10 @@ public class Communication implements Runnable {
                 }
 
             } catch (IOException e) {
-
+                e.printStackTrace();
             }
 
         }
     }
+
 }

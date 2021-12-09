@@ -1,4 +1,4 @@
-package FinalProject.broker;
+package FinalProject.garageDoor.communication;
 
 public class JsonMessage {
     private String id;
