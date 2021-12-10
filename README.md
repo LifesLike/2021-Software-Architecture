@@ -3,10 +3,10 @@
 
 
 ## 통신 json 타입 규격
-'''javascript
+```javascript
 {
   "id": "",
   "receiver": "",
   "data": ""
 }
-'''
+```
