@@ -1,5 +1,7 @@
 package FinalProject.smarthome;
 
+import FinalProject.garageDoor.sensor.ObstacleSensorDriver;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class DetectObstacle extends JPanel {
+    private ObstacleSensorDriver ObstacleSensorDriver;
+
     Color color = new Color(204, 255, 153, 200);
     ImageIcon imgicon = new ImageIcon("img/UI_Mark.jpg");
     Image img = imgicon.getImage();
@@ -56,12 +60,12 @@ public class DetectObstacle extends JPanel {
 
         detected.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-
+                ObstacleSensorDriver.obstacleDetected();
             }
         });
         cleared.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-
+                ObstacleSensorDriver.obstacleCleared();
             }
         });
         back.addActionListener(new ActionListener() {
