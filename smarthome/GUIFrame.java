@@ -11,7 +11,7 @@ public class GUIFrame extends JFrame {
     Home H = new Home(this);
     GarageDoor GD = new GarageDoor(this);
     AddService AS = new AddService(this);
-    
+
 
     public GUIFrame(String title) {
         super(title);
@@ -39,12 +39,7 @@ public class GUIFrame extends JFrame {
             revalidate();
             repaint();
         }
-        else if (str.equals("detectobstacle")) {
-            frame.removeAll();
-            frame.add(GD.new DetectObstacle(this));
-            revalidate();
-            repaint();
-        }
+
 
     }
 }
