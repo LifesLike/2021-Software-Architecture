@@ -1,4 +1,4 @@
-package homeautomation;
+package FinalProject.smarthome.communication;
 
 import java.awt.CardLayout;
 import java.awt.Color;

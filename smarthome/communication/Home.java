@@ -1,8 +1,6 @@
-package homeautomation;
+package FinalProject.smarthome.communication;
 
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,13 +9,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-public class AddService extends JPanel {
-
+public class Home extends JPanel {
 	Color color = new Color(204, 255, 153, 200);
 	ImageIcon imgicon = new ImageIcon("img/UI_Mark.jpg");
 	Image img = imgicon.getImage();
@@ -31,30 +25,26 @@ public class AddService extends JPanel {
 
 	}
 
-	public AddService(GUIFrame GF) {
+	public Home(GUIFrame GF) {
 		this.GF = GF;
-
+		JButton garageDoor = new JButton("GarageDoor");
+		JButton addService = new JButton("AddService");
+		JButton home = new JButton("Home");
 		setLayout(new FlowLayout());
 		setBackground(color);
-		add(new JLabel("연결 코드 "));
-		JTextField tf = new JTextField(20);
-		JButton home = new JButton("Home");
-		add(tf);
-		add(home);
-
-		// 텍스트필드에 연결코드를 쳤을시,
-		tf.addActionListener(new ActionListener() {
+		add(garageDoor);
+		add(addService);
+		garageDoor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String protocol = tf.getText();
-				System.out.println(protocol);
-				tf.setText("");
+
+				GF.change("garagedoor");
 
 			}
 		});
-		home.addActionListener(new ActionListener() {
+		addService.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// setVisible(false);
-				GF.change("home");
+
+				GF.change("addservice");
 			}
 		});
 
