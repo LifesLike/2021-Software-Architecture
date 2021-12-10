@@ -13,7 +13,7 @@ public class GarageDoorSystemMain {
         ActuatorInterface actuatorDriver = new ActuatorDriver();
 
         DoorController doorController = new DoorController(scheduler, actuatorDriver);
-        ObstacleController obstacleController = new ObstacleController(scheduler);
+        ObstacleController obstacleController = new ObstacleController(scheduler, actuatorDriver);
         ObstacleSensorDriverInterface obstacleSensor = new ObstacleSensorDriver(obstacleController);
 
         Communication communication = new Communication(doorController);
