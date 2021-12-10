@@ -1,8 +1,6 @@
-package FinalProject.smarthome.communication;
+package FinalProject.smarthome;
 
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,7 +9,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class GarageDoor extends JPanel {

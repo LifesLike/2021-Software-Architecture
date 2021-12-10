@@ -1,12 +1,10 @@
-package FinalProject.smarthome.communication;
+package FinalProject.smarthome;
 
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class GUIFrame extends JFrame {

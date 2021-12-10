@@ -1,4 +1,4 @@
-package FinalProject.smarthome.communication;
+package FinalProject.smarthome;
 
 public class main {
 
