@@ -54,8 +54,16 @@ public class Communication implements Runnable {
                 msg = in.readLine();
                 message = gson.fromJson(msg, JsonMessage.class);
 
-                if (message.getData().equals("open")) {
-                    doorController.doorOpen();
+                switch (message.getData()) {
+                    case "open":
+                        doorController.doorOpen();
+                        break;
+                    case "close":
+                        doorController.doorClose();
+                        break;
+                    case "stop":
+                        doorController.doorStop();
+                        break;
                 }
 
             } catch (IOException e) {
