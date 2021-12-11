@@ -9,10 +9,10 @@ import java.net.Socket;
 public class Communication {
     private String ip = "localhost";
     private Socket socket;
-    private int PORT;
+    private final int PORT;
     private BufferedReader in = null;
     private PrintWriter out = null;
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     JsonMessage message;
 
     public Communication() {
