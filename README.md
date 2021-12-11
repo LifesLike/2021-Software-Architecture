@@ -3,6 +3,11 @@
 
 ***
 
+### 프로그램 실행 순서
+1. Broker
+2. Garage Door
+3. Smart Home 
+
 ### 통신용 json 프로토콜
 ```javascript
 {
