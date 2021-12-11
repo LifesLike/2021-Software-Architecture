@@ -50,7 +50,7 @@ public class Broker {
             this.socket = socket;
         }
 
-        public void send(IotThread iot, JsonMessage message) {
+        public void send(IotThread iot, JsonMessage message)throws NullPointerException {
             iot.out.println(gson.toJson(message));
         }
 
@@ -71,20 +71,38 @@ public class Broker {
                     if (jsonMessage == null) {
                         continue;
                     }
-                    if (jsonMessage.getData().equals("register")) {
-                        subscribers.put(jsonMessage.getId(), this);
-                    } else if (jsonMessage.getData().equals("termination")) {
-                        subscribers.remove(jsonMessage.getId());
-                        status = false;
-                    } else {
-//                        subscribers.putIfAbsent(jsonMessage.getId(), this);
-                        try {
-                            send(subscribers.get(jsonMessage.getReceiver()), jsonMessage);
-                        } catch (NullPointerException e) {
-                            e.printStackTrace();
-                            System.out.println("수신 iot 장치는 아직 연결되지 않았음");
-                        }
+
+                    switch (jsonMessage.getData()) {
+                        case "register":
+                            subscribers.put(jsonMessage.getId(), this);
+                            break;
+                        case "termination":
+                            subscribers.remove(jsonMessage.getId());
+                            status = false;
+                            break;
+                        default:
+                            try {
+                                send(subscribers.get(jsonMessage.getReceiver()), jsonMessage);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                                System.out.println("수신 iot 장치는 아직 연결되지 않았음");
+                            }
                     }
+
+//                    if (jsonMessage.getData().equals("register")) {
+//                        subscribers.put(jsonMessage.getId(), this);
+//                    } else if (jsonMessage.getData().equals("termination")) {
+//                        subscribers.remove(jsonMessage.getId());
+//                        status = false;
+//                    } else {
+////                        subscribers.putIfAbsent(jsonMessage.getId(), this);
+//                        try {
+//                            send(subscribers.get(jsonMessage.getReceiver()), jsonMessage);
+//                        } catch (NullPointerException e) {
+//                            e.printStackTrace();
+//                            System.out.println("수신 iot 장치는 아직 연결되지 않았음");
+//                        }
+//                    }
 
                 }
                 this.interrupt();
