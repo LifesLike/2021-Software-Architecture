@@ -2,11 +2,12 @@ package FinalProject.broker;
 
 import com.google.gson.Gson;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -14,8 +15,7 @@ public class Broker {
     private ServerSocket serverSocket = null;
     private Socket socket = null;
     private int PORT = 40000;
-    private List<IotThread> iotThreads = new ArrayList<>();
-    private Map<String, List<IotThread>> subscribers = new ConcurrentHashMap<>();
+    private Map<String, IotThread> subscribers = new ConcurrentHashMap<>();
 
     public Broker() {
     }
@@ -29,37 +29,69 @@ public class Broker {
             serverSocket = new ServerSocket(PORT);
             while (true) {
                 socket = serverSocket.accept();
-                IotThread iot = new IotThread();
-                iotThreads.add(iot);
+                IotThread iot = new IotThread(socket);
+
                 iot.start();
             }
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
-
     class IotThread extends Thread {
+        private Socket socket;
+        private BufferedReader in = null;
+        private PrintWriter out = null;
+        private Gson gson = new Gson();
+
+
+        public IotThread(Socket socket) {
+            this.socket = socket;
+        }
+
+        public void send(IotThread iot, JsonMessage message) {
+            iot.out.println(gson.toJson(message));
+        }
 
         @Override
         public void run() {
             boolean status = true;
             String msg;
-            JsonMessage message;
-            Gson gson = new Gson();
+            JsonMessage jsonMessage;
 
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))
-            ) {
+            try {
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                out = new PrintWriter(socket.getOutputStream(), true);
+
                 while (status) {
                     msg = in.readLine();
-                    message = gson.fromJson(msg, JsonMessage.class);
+                    System.out.println(msg);
+                    jsonMessage = gson.fromJson(msg, JsonMessage.class);
+                    if (jsonMessage == null) {
+                        continue;
+                    }
+                    if (jsonMessage.getData().equals("register")) {
+                        subscribers.put(jsonMessage.getId(), this);
+                    } else if (jsonMessage.getData().equals("termination")) {
+                        subscribers.remove(jsonMessage.getId());
+                        status = false;
+                    } else {
+//                        subscribers.putIfAbsent(jsonMessage.getId(), this);
+                        try {
+                            send(subscribers.get(jsonMessage.getReceiver()), jsonMessage);
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                            System.out.println("수신 iot 장치는 아직 연결되지 않았음");
+                        }
+                    }
+
                 }
                 this.interrupt();
+                System.out.println(this.getName() + " 종료됨");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
