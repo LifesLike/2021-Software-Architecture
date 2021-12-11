@@ -25,14 +25,6 @@ public class DoorController implements Observer {
     }
 
     public void doorOpen() {
-//        if (obstacle) {
-//            System.out.println("장애물 때문에 문 열 수 없음");
-//        } else {
-//            System.out.println("문 열기 시작");
-//            DoorCommand command = new DoorOpenCommand(actuatorDriver);
-//            scheduler.addCommand(command);
-//        }
-
         System.out.println("문 열기 시작");
         DoorCommand command = new DoorOpenCommand(actuatorDriver);
         scheduler.addCommand(command);
@@ -49,13 +41,6 @@ public class DoorController implements Observer {
     }
 
     public void doorStop() {
-//        if (obstacle) {
-//            System.out.println("장애물 때문에 문 열 수 없음");
-//        } else {
-//            System.out.println("문 멈추기 시작");
-//            DoorCommand command = new DoorStopCommand(actuatorDriver);
-//            scheduler.addCommand(command);
-//        }
         System.out.println("문 멈추기 시작");
         DoorCommand command = new DoorStopCommand(actuatorDriver);
         scheduler.addCommand(command);

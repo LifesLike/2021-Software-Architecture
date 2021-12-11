@@ -8,8 +8,8 @@ import FinalProject.garageDoor.command.ObstacleDetectedCommand;
 import FinalProject.garageDoor.scheduler.Scheduler;
 
 public class ObstacleController {
-    private Scheduler scheduler;
-    private ActuatorInterface actuatorDriver;
+    private final Scheduler scheduler;
+    private final ActuatorInterface actuatorDriver;
 
     public ObstacleController(Scheduler scheduler, ActuatorInterface actuatorDriver) {
         this.scheduler = scheduler;
@@ -17,13 +17,11 @@ public class ObstacleController {
     }
 
     public void obstacleDetected() {
-//        doorStatus.setObstacle(true);
         ObstacleCommand command = new ObstacleDetectedCommand(actuatorDriver);
         scheduler.addCommand(command);
     }
 
     public void obstacleCleared() {
-//        doorStatus.setObstacle(true);
         ObstacleCommand command = new ObstacleClearedCommand();
         scheduler.addCommand(command);
     }
