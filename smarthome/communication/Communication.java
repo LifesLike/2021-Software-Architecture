@@ -38,19 +38,19 @@ import java.net.Socket;
             }
         }
 
-    public void open() {
-        message.setData("open");
-        out.println(gson.toJson(message));
-    }
+        public void open() {
+            message.setData("open");
+            out.println(gson.toJson(message));
+        }
 
-    public void close() {
-        message.setData("close");
-        out.println(gson.toJson(message));
-    }
+        public void close() {
+            message.setData("close");
+            out.println(gson.toJson(message));
+        }
 
-    public void stop() {
-        message.setData("stop");
-        out.println(gson.toJson(message));
-    }
+        public void stop() {
+            message.setData("stop");
+            out.println(gson.toJson(message));
+        }
 
 }
