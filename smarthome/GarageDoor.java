@@ -11,7 +11,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class GarageDoor extends JPanel {
-    private Communication communication = new Communication();
+    private Communication communication;
     Color color = new Color(204, 255, 153, 200);
     ImageIcon imgicon = new ImageIcon("img/UI_Mark.jpg");
     Image img = imgicon.getImage();
@@ -25,8 +25,9 @@ public class GarageDoor extends JPanel {
 
     }
 
-    public GarageDoor(GUIFrame GF) {
+    public GarageDoor(GUIFrame GF, Communication communication) {
         this.GF = GF;
+        this.communication = communication;
         setSize(300, 300);
         JButton open = new JButton("Door Open");
         JButton close = new JButton("Door Close");
