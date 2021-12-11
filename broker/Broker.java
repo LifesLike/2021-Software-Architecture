@@ -97,6 +97,13 @@ public class Broker {
                 System.out.println(this.getName() + " " + this.key + " 종료됨");
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    System.out.println("소켓 종료 실패");
+                    e.printStackTrace();
+                }
             }
         }
     }
