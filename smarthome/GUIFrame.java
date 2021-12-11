@@ -12,13 +12,15 @@ public class GUIFrame extends JFrame {
     ImageIcon imgicon = new ImageIcon("img/UI_Mark.jpg");
     Image img = imgicon.getImage();
     Home H = new Home(this);
-    GarageDoor GD = new GarageDoor(this, communication);
-    AddService AS = new AddService(this);
+    GarageDoor GD ;
+    AddService AS ;
 
 
     public GUIFrame(String title, Communication communication) {
         super(title);
         this.communication = communication;
+        GD= new GarageDoor(this,this.communication);
+        AS = new AddService(this);
         this.setSize(300, 300);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -27,6 +29,7 @@ public class GUIFrame extends JFrame {
     }
 
     public void change(String str) {
+       
         if (str.equals("garagedoor")) {
             frame.removeAll();
             frame.add(GD);
