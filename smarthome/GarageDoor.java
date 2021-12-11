@@ -1,6 +1,7 @@
 package FinalProject.smarthome;
 
 import FinalProject.garageDoor.sensor.ObstacleSensorDriver;
+import FinalProject.smarthome.communication.Communication;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class GarageDoor extends JPanel {
+    private Communication communication = new Communication();
     Color color = new Color(204, 255, 153, 200);
     ImageIcon imgicon = new ImageIcon("img/UI_Mark.jpg");
     Image img = imgicon.getImage();
@@ -40,17 +42,18 @@ public class GarageDoor extends JPanel {
 
         open.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("문이 열립니다.");
+                communication.open();
             }
         });
         close.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("문이 닫힙니다.");
+
+                communication.close();
             }
         });
         stop.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("문이 멈췄습니다.");
+                communication.stop();
             }
         });
 
@@ -63,5 +66,6 @@ public class GarageDoor extends JPanel {
         });
 
     }
+
 
 }
