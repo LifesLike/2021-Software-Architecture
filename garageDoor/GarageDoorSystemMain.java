@@ -18,5 +18,7 @@ public class GarageDoorSystemMain {
 
         Communication communication = new Communication(doorController);
         communication.connectServer();
+
+        DetectObstacleGUI detectobstacleGUI = new DetectObstacleGUI("7조 SA프로젝트 ", obstacleSensor);
     }
 }

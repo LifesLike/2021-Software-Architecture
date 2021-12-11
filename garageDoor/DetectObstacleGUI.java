@@ -1,5 +1,6 @@
 package FinalProject.garageDoor;
 
+import FinalProject.garageDoor.sensor.ObstacleSensorDriverInterface;
 import FinalProject.smarthome.GUIFrame;
 
 import javax.swing.*;
@@ -8,11 +9,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class DetectObstacleGUI extends JFrame {
-    private FinalProject.garageDoor.sensor.ObstacleSensorDriver ObstacleSensorDriver;
+    private ObstacleSensorDriverInterface ObstacleSensorDriver;
     Container frame = this.getContentPane();
 
-    public DetectObstacleGUI(String title) {
+    public DetectObstacleGUI(String title, ObstacleSensorDriverInterface obstacleSensorDriver) {
         super(title);
+        this.ObstacleSensorDriver = obstacleSensorDriver;
         this.setSize(300, 300);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
