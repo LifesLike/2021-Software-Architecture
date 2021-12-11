@@ -3,7 +3,7 @@ package FinalProject.garageDoor.actuator;
 public class ActuatorSimulator implements Runnable {
 
     private int curHeight = 0;
-    private int maxHeight = 200;
+    private final int maxHeight = 300;
     private Thread thread = null;
     private String command;
 
@@ -20,8 +20,8 @@ public class ActuatorSimulator implements Runnable {
         while (curHeight < maxHeight) {
             try {
                 System.out.println("현재 문 높이: " + curHeight);
-                curHeight += 10;
-                Thread.sleep(100);
+                curHeight += 1;
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 break;
             }
@@ -31,9 +31,9 @@ public class ActuatorSimulator implements Runnable {
     public void down() {
         while (curHeight > 0) {
             try {
-                curHeight -= 10;
+                curHeight -= 1;
                 System.out.println("현재 문 높이: " + curHeight);
-                Thread.sleep(100);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 break;
             }
