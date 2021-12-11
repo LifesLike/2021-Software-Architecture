@@ -8,7 +8,7 @@ public class Testmain {
         Communication communication = new Communication();
         communication.connectServer();
 
-        GUIFrame GF = new GUIFrame("7조 SA프로젝트 ");
+        GUIFrame GF = new GUIFrame("7조 SA프로젝트 ", communication);
 
     }
 }
