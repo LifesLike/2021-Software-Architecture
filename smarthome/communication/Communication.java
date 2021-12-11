@@ -39,16 +39,19 @@ import java.net.Socket;
         }
 
         public void open() {
+            message.setReceiver("garageDoor");
             message.setData("open");
             out.println(gson.toJson(message));
         }
 
         public void close() {
+            message.setReceiver("garageDoor");
             message.setData("close");
             out.println(gson.toJson(message));
         }
 
         public void stop() {
+            message.setReceiver("garageDoor");
             message.setData("stop");
             out.println(gson.toJson(message));
         }
