@@ -1,8 +1,10 @@
 package FinalProject.garageDoor;
 
 import FinalProject.garageDoor.actuator.ActuatorInterface;
+import FinalProject.garageDoor.command.DoorCloseCommand;
 import FinalProject.garageDoor.command.DoorCommand;
 import FinalProject.garageDoor.command.DoorOpenCommand;
+import FinalProject.garageDoor.command.DoorStopCommand;
 import FinalProject.garageDoor.scheduler.Scheduler;
 
 import java.util.Observable;
@@ -23,21 +25,40 @@ public class DoorController implements Observer {
     }
 
     public void doorOpen() {
+//        if (obstacle) {
+//            System.out.println("장애물 때문에 문 열 수 없음");
+//        } else {
+//            System.out.println("문 열기 시작");
+//            DoorCommand command = new DoorOpenCommand(actuatorDriver);
+//            scheduler.addCommand(command);
+//        }
+
+        System.out.println("문 열기 시작");
+        DoorCommand command = new DoorOpenCommand(actuatorDriver);
+        scheduler.addCommand(command);
+    }
+
+    public void doorClose() {
         if (obstacle) {
-            System.out.println("장애물 때문에 문 열 수 없음");
+            System.out.println("장애물 때문에 문 닫을 수 없음");
         } else {
-            System.out.println("문 열기 시작");
-            DoorCommand command = new DoorOpenCommand(actuatorDriver);
+            System.out.println("문 닫기 시작");
+            DoorCommand command = new DoorCloseCommand(actuatorDriver);
             scheduler.addCommand(command);
         }
     }
 
-    public void doorClose() {
-
-    }
-
     public void doorStop() {
-
+//        if (obstacle) {
+//            System.out.println("장애물 때문에 문 열 수 없음");
+//        } else {
+//            System.out.println("문 멈추기 시작");
+//            DoorCommand command = new DoorStopCommand(actuatorDriver);
+//            scheduler.addCommand(command);
+//        }
+        System.out.println("문 멈추기 시작");
+        DoorCommand command = new DoorStopCommand(actuatorDriver);
+        scheduler.addCommand(command);
     }
 
     @Override
