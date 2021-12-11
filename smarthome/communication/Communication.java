@@ -15,6 +15,14 @@ public class Communication {
     private Gson gson = new Gson();
     JsonMessage message;
 
+    public Communication() {
+        this(40000);
+    }
+
+    public Communication(int PORT) {
+        this.PORT = PORT;
+    }
+
     public void connectServer() {
         try {
             socket = new Socket(ip, PORT);
