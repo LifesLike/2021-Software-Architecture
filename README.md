@@ -8,7 +8,7 @@
 2. Garage Door
 3. Smart Home 
 
-### 통신용 json 프로토콜
+### 통신용 json 프로토콜 구조
 ```javascript
 {
   "id": "",
