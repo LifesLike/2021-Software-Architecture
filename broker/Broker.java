@@ -43,6 +43,7 @@ public class Broker {
         private Socket socket;
         private BufferedReader in = null;
         private PrintWriter out = null;
+        private String key;
         private Gson gson = new Gson();
 
 
@@ -66,15 +67,16 @@ public class Broker {
 
                 while (status) {
                     msg = in.readLine();
-                    System.out.println(msg);
                     jsonMessage = gson.fromJson(msg, JsonMessage.class);
                     if (jsonMessage == null) {
-                        continue;
+                        subscribers.remove(this.key);
+                        break;
                     }
 
                     switch (jsonMessage.getData()) {
                         case "register":
-                            subscribers.put(jsonMessage.getId(), this);
+                            this.key = jsonMessage.getId();
+                            subscribers.put(key, this);
                             break;
                         case "termination":
                             subscribers.remove(jsonMessage.getId());
@@ -89,22 +91,8 @@ public class Broker {
                             }
                     }
 
-//                    if (jsonMessage.getData().equals("register")) {
-//                        subscribers.put(jsonMessage.getId(), this);
-//                    } else if (jsonMessage.getData().equals("termination")) {
-//                        subscribers.remove(jsonMessage.getId());
-//                        status = false;
-//                    } else {
-////                        subscribers.putIfAbsent(jsonMessage.getId(), this);
-//                        try {
-//                            send(subscribers.get(jsonMessage.getReceiver()), jsonMessage);
-//                        } catch (NullPointerException e) {
-//                            e.printStackTrace();
-//                            System.out.println("수신 iot 장치는 아직 연결되지 않았음");
-//                        }
-//                    }
-
                 }
+
                 this.interrupt();
                 System.out.println(this.getName() + " 종료됨");
             } catch (IOException e) {
