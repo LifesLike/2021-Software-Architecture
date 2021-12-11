@@ -70,7 +70,8 @@ public class Broker {
                     jsonMessage = gson.fromJson(msg, JsonMessage.class);
                     if (jsonMessage == null) {
                         subscribers.remove(this.key);
-                        break;
+                        status = false;
+                        continue;
                     }
 
                     switch (jsonMessage.getData()) {
@@ -86,15 +87,14 @@ public class Broker {
                             try {
                                 send(subscribers.get(jsonMessage.getReceiver()), jsonMessage);
                             } catch (NullPointerException e) {
-                                e.printStackTrace();
-                                System.out.println("수신 iot 장치는 아직 연결되지 않았음");
+                                System.out.println("수신 iot 장치가 아직 연결되지 않았음");
                             }
                     }
 
                 }
 
                 this.interrupt();
-                System.out.println(this.getName() + " 종료됨");
+                System.out.println(this.getName() + " " + this.key + " 종료됨");
             } catch (IOException e) {
                 e.printStackTrace();
             }
