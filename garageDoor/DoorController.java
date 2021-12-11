@@ -25,7 +25,6 @@ public class DoorController implements Observer {
     public void doorOpen() {
         if (obstacle) {
             System.out.println("장애물 때문에 문 열 수 없음");
-            return;
         } else {
             System.out.println("문 열기 시작");
             DoorCommand command = new DoorOpenCommand(actuatorDriver);
