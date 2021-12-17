@@ -1,7 +1,7 @@
 package FinalProject.smarthome;
 import FinalProject.smarthome.communication.Communication;
 
-public class Testmain {
+public class SmartHomeSystemMain {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
 
