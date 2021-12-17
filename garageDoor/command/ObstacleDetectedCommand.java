@@ -8,6 +8,11 @@ public class ObstacleDetectedCommand extends ObstacleCommand {
     private ActuatorInterface actuatorDriver;
 
     public ObstacleDetectedCommand(ActuatorInterface actuatorDriver) {
+        this(actuatorDriver, 10);
+    }
+
+    public ObstacleDetectedCommand(ActuatorInterface actuatorDriver, int priority) {
+        super(priority);
         this.actuatorDriver = actuatorDriver;
     }
 
