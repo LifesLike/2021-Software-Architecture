@@ -1,7 +1,7 @@
 package FinalProject.garageDoor.command;
 
 public abstract class Command implements Comparable<Command> {
-    int priority;
+    private final int priority;
 
     public Command(int priority) {
         this.priority = priority;
