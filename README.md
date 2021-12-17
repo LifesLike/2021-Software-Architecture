@@ -11,8 +11,8 @@
 ### 통신용 json 프로토콜 구조
 ```javascript
 {
-  "id": "",
-  "receiver": "",
-  "data": ""
+  "id": "보내는쪽 id",
+  "receiver": "받는쪽 id",
+  "data": "보낼 명령"
 }
 ```
