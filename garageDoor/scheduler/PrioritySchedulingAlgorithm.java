@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class PrioritySchedulingAlgorithm implements SchedulingAlgorithm {
-    private PriorityQueue<Command> queue = new PriorityQueue<>(Collections.reverseOrder());
+    private final PriorityQueue<Command> queue = new PriorityQueue<>(Collections.reverseOrder());
 
     @Override
     public void addCommand(Command command) {

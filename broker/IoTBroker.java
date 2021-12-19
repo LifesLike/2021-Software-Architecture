@@ -12,10 +12,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Broker {
-    private ServerSocket serverSocket = null;
-    private Socket socket = null;
     private int PORT = 40000;
-    private Map<String, IotThread> subscribers = new ConcurrentHashMap<>();
+    private final Map<String, IotThread> subscribers = new ConcurrentHashMap<>();
 
     public Broker() {
     }
@@ -26,9 +24,9 @@ public class Broker {
 
     public void start() {
         try {
-            serverSocket = new ServerSocket(PORT);
+            ServerSocket serverSocket = new ServerSocket(PORT);
             while (true) {
-                socket = serverSocket.accept();
+                Socket socket = serverSocket.accept();
                 IotThread iot = new IotThread(socket);
 
                 iot.start();
@@ -40,11 +38,11 @@ public class Broker {
     }
 
     class IotThread extends Thread {
-        private Socket socket;
+        private final Socket socket;
         private BufferedReader in = null;
         private PrintWriter out = null;
         private String key;
-        private Gson gson = new Gson();
+        private final Gson gson = new Gson();
 
 
         public IotThread(Socket socket) {
