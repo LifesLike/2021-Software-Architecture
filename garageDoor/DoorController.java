@@ -11,17 +11,15 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class DoorController implements Observer {
-    private Scheduler scheduler;
-    private ActuatorInterface actuatorDriver;
-    private DoorStatus doorStatus = DoorStatus.getInstance();
-    private Observable observable;
+    private final Scheduler scheduler;
+    private final ActuatorInterface actuatorDriver;
+    private final DoorStatus doorStatus = DoorStatus.getInstance();
     private boolean obstacle = false;
 
     public DoorController(Scheduler scheduler, ActuatorInterface actuatorDriver) {
         this.scheduler = scheduler;
         this.actuatorDriver = actuatorDriver;
-        observable = doorStatus;
-        observable.addObserver(this);
+        doorStatus.addObserver(this);
     }
 
     public void doorOpen() {

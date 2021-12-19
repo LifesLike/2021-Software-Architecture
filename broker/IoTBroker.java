@@ -11,17 +11,21 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class Broker {
+public class IoTBroker {
     private int PORT = 40000;
     private final Map<String, IotThread> subscribers = new ConcurrentHashMap<>();
 
-    public Broker() {
+    public IoTBroker() {
     }
 
-    public Broker(int PORT) {
+    public IoTBroker(int PORT) {
         this.PORT = PORT;
     }
 
+    /**
+     * IoTBroker 클래스는 무한 루프를 돌면서 새로 연결되는 IoT 기기에 대해 핸들링 쓰레드를 생성한다.
+     * I/O 작업은 모두 핸들링 쓰레드가 담당한다.
+     */
     public void start() {
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
@@ -107,7 +111,7 @@ public class Broker {
     }
 
     public static void main(String[] args) {
-        Broker server = new Broker();
+        IoTBroker server = new IoTBroker();
         server.start();
     }
 }
