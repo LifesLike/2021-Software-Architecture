@@ -4,7 +4,7 @@ import FinalProject.garageDoor.ObstacleController;
 
 public class ObstacleSensorDriver implements ObstacleSensorDriverInterface {
 
-    private ObstacleController obstacleController;
+    private final ObstacleController obstacleController;
 
     public ObstacleSensorDriver(ObstacleController obstacleController) {
         this.obstacleController = obstacleController;
