@@ -19,7 +19,7 @@ public class ActuatorSimulator implements Runnable {
     public void up() {
         while (curHeight < maxHeight) {
             try {
-                System.out.println("현재 문 높이: " + curHeight);
+                System.out.println("현재 문 높이: " + curHeight + " cm");
                 curHeight += 1;
                 Thread.sleep(30);
             } catch (InterruptedException e) {
@@ -32,7 +32,7 @@ public class ActuatorSimulator implements Runnable {
         while (curHeight > 0) {
             try {
                 curHeight -= 1;
-                System.out.println("현재 문 높이: " + curHeight);
+                System.out.println("현재 문 높이: " + curHeight + " cm");
                 Thread.sleep(30);
             } catch (InterruptedException e) {
                 break;
@@ -41,7 +41,7 @@ public class ActuatorSimulator implements Runnable {
     }
 
     public void halt() {
-        System.out.println("현재 문 높이: " + curHeight);
+        System.out.println("현재 문 높이: " + curHeight + " cm");
     }
 
     @Override
