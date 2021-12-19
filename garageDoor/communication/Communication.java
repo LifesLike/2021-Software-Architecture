@@ -6,13 +6,13 @@ import com.google.gson.Gson;
 import java.io.*;
 import java.net.Socket;
 
-public class Communication implements Runnable {
+public class Communication implements CommunicationInterface, Runnable {
     private String ip = "localhost";
     private Socket socket;
-    private int PORT;
+    private final int PORT;
     private BufferedReader in = null;
     private PrintWriter out = null;
-    private DoorController doorController;
+    private final DoorController doorController;
     Gson gson = new Gson();
     JsonMessage message;
     Thread thread;
@@ -26,6 +26,7 @@ public class Communication implements Runnable {
         this.doorController = doorController;
     }
 
+    @Override
     public void connectServer() {
         try {
             socket = new Socket(ip, PORT);
